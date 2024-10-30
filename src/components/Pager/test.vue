@@ -1,7 +1,6 @@
 
 <!-- npm i -g @vue/cli-service-global 安装启动单个组件的依赖
   启动  vue serve .\src\components\Pager\test.vue
-
 -->
 <template>
   <div>
@@ -9,7 +8,7 @@
         :total="total"
         :current="current"
         @pageChange="handlePageChange"/>
-    <h1>1111</h1>
+
   </div>
 
 </template>
@@ -17,7 +16,7 @@
 <script >
   import Pager from "./index.vue"
   export default {
-    comments: {
+    components: {
       Pager,
     },
 
@@ -40,5 +39,5 @@
 
 
 <style scoped lang="less">
-
+  .
 </style>
