@@ -2,7 +2,7 @@
   <div  v-if="pageNumber > 1" class="pager-container">
     <a @click="handleClick(1)" :class="{disabled: current ==1}">首页</a>
     <a @click="handleClick(current-1)" :class="{disabled: current ==1}">&lt;&lt;</a>
-    <a  v-for="(n,i) in numbers" :key="i" :class="{active:n ===current}" >{{n}}</a>
+    <a  v-for="(n,i) in numbers" @click="handleClick(n)" :key="i" :class="{active:n ===current}" >{{n}}</a>
     <a  @click="handleClick(current + 1)" :class="{disabled: current === pageNumber}"> &gt;&gt; </a>
     <a  @click="handleClick(pageNumber)">末页</a>
   </div>
@@ -67,7 +67,7 @@ export default {
         return;
       }
 
-      console.log(newPage);
+      // console.log(newPage);
       //抛出事件，
       this.$emit('pageChange',newPage) //newPage 事件总线
     }

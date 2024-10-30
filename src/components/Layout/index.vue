@@ -1,3 +1,4 @@
+<!--布局组件-->
 <template>
   <div class="layout-container">
 
@@ -8,7 +9,6 @@
     <div class="main">
         <slot></slot>
     </div>
-
 
     <div class="right">
       <slot name="right"/>
@@ -30,8 +30,9 @@ export default {
     width: 100%;
     height:100%;
     display: flex;
+
     .left, .right {
-      flex: 0 0 auto;
+      flex: 0 0 auto; //保持宽度，不能增长，不能压缩
     }
 
     .main {
