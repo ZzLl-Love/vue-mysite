@@ -37,6 +37,7 @@ yarn.lock
 *.babelrc
 *.eslintrc.js
 *.eslintcache
+/node_modules
 
 # Typescript 编译输出（若使用）
 *.tsbuildinfo
