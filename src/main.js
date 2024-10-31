@@ -33,6 +33,6 @@ import * as api from './api/blog'
 // })
 
 //测试获取博客评论
-api.getComments('123').then(res => {
-  console.log('获取博客评论',res);
-})
+// api.getComments('123').then(res => {
+//   console.log('获取博客评论',res);
+// })
