@@ -3,6 +3,8 @@
   <Layout>
     <div class="main-container">
       <BlogDetail :blog="data"/>
+<!--      isLoading 为false-->
+      <BlogComment/>
     </div>
     <template #right>
 <!--      todo 自定义指定v-loading 加载中的效果-->
@@ -19,12 +21,14 @@
  import Layout from "@/components/Layout/index.vue";
  import BlogDetail from "@/views/Blog/components/BlogDetail.vue";
  import BlogToc from "@/views/Blog/components/BlogToc.vue";
+ import BlogComment from "@/views/Blog/components/BlogComment.vue";
  export default {
   mixins: [fectchData({})],
   components: {
     Layout,
     BlogDetail, //子组件 具体博客详情
-    BlogToc     // 博客目录
+    BlogToc,     // 博客目录
+    BlogComment  //评论组件
   },
    methods: {
       async fetchData(){
