@@ -1,7 +1,7 @@
 <!--博客详情父组件-->
 <template>
   <Layout>
-    <div class="main-container">
+    <div class="main-container" ref="mainContainer">
       <BlogDetail :blog="data"/>
 <!--      isLoading 为false-->
       <BlogComment/>
@@ -9,6 +9,7 @@
     <template #right>
 <!--      todo 自定义指定v-loading 加载中的效果-->
       <div class="right-container">
+
         <BlogToc :toc="data.toc" v-if="data.toc"/>
       </div>
     </template>
@@ -32,13 +33,31 @@
   },
    methods: {
       async fetchData(){
-        console.log( await getBlog(this.$route.params.id))
+        // console.log( await getBlog(this.$route.params.id))
         return await getBlog(this.$route.params.id)
-      }
-   },
-   created(){
+      },
 
+     //处理滚动条事件
+     handleScroll() {
+      this.$bus.$emit("mainScr oll", this.$refs.mainContainer); //提交事件给事件总线
+     },
    },
+
+   mounted(){
+      //注册滚动条事件
+      this.$refs.mainContainer.addEventListener("scroll",this.handleScroll);
+   },
+
+   updated(){
+      const hash = location.hash;
+      location.hash = '';
+      setTimeout(()=>{location.hash = hash},50);
+   },
+
+   //移除事件
+   destroyed(){
+      this.$refs.mainContainer.removeEventListener("scroll",this.handleScroll);
+   }
  }
 </script>
 

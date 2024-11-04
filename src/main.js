@@ -4,10 +4,12 @@ import App from './App.vue'
 import "./styles/global.less"
 import router from '@/router'
 import "./api/banner"
+import "./eventBus"
 Vue.config.productionTip = false
 
 
 new Vue({
+  devtools: true,
   router,
   render: h => h(App),
 }).$mount('#app')
@@ -19,6 +21,7 @@ new Vue({
 
 //测试获取单个博客评论信息
 import * as api from './api/blog'
+import axios from "axios";
 // api.getBlog('123').then(res => {
 //   console.log("单个博客信息:",res)
 // })
