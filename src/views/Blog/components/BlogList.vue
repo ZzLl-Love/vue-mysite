@@ -66,6 +66,11 @@ export default {
       // console.log(this.routerInfo)
   },
 
+  mounted(){
+    this.$refs.container.addEventListener("scroll",this.handleScroll);
+    this.$bus.$on("setMainScroll", this.handleScrollToZero);
+  },
+
   //监控路由信息 分页导致路由信息改变  路由信息改变导致 重新请求远程数据
   watch: {
    async $route(newVal,oldVal){
@@ -76,6 +81,7 @@ export default {
       this.isLoading = false;
     }
   },
+
 
   computed:{
      //获取地址栏中的路由信息
@@ -100,6 +106,16 @@ export default {
      async fetchData() {
          return await getBlogs(this.routerInfo.page, this.routerInfo.limit,this.routerInfo.categoryId);
      },
+
+     //处理滚动条事件
+     handleScroll() {
+       this.$bus.$emit("mainScroll", this.$refs.container); //提交事件给事件总线
+     },
+
+     handleScrollToZero(scrollTop){
+       this.$refs.container.scrollTop = scrollTop;
+     },
+
      //分页组件点击分页时处理
      handlePageChange(newPage){
        const query = {

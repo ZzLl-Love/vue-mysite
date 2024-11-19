@@ -31,7 +31,10 @@
     BlogToc,     // 博客目录
     BlogComment  //评论组件
   },
+
+
    methods: {
+
       async fetchData(){
         // console.log( await getBlog(this.$route.params.id))
         return await getBlog(this.$route.params.id)
@@ -39,8 +42,17 @@
 
      //处理滚动条事件
      handleScroll() {
-      this.$bus.$emit("mainScr oll", this.$refs.mainContainer); //提交事件给事件总线
+      this.$bus.$emit("mainScroll", this.$refs.mainContainer); //提交事件给事件总线
      },
+
+     handleScrollToZero(scrollTop){
+       console.log(scrollTop);
+      this.$refs.mainContainer.scrollTop = scrollTop;
+     }
+   },
+
+   created() {
+     this.$bus.$on("setMainScroll", this.handleScrollToZero);
    },
 
    mounted(){
@@ -55,8 +67,10 @@
    },
 
    //移除事件
-   destroyed(){
+   beforeDestroy(){
       this.$refs.mainContainer.removeEventListener("scroll",this.handleScroll);
+     this.$bus.$off("setMainScroll", this.handleScrollToZero);
+
    }
  }
 </script>

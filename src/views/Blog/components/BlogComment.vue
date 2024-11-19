@@ -21,13 +21,47 @@
         limit:10
       }
     },
+
+    created(){
+      this.$bus.$on("mainScroll", this.handleScroll);
+    },
+    destroyed(){
+      this.$bus.$off("mainScroll", this.handleScroll);
+    },
+
     components: {
       MessageArea,
+    },
+
+    computed:{
+      hasMore(){
+        return this.data.rows.length < this.data.total; //是否有更多的数据
+      },
     },
     methods: {
       async fetchData(){
        return await getComments(this.$route.params.id, this.page, this.limit);
       },
+
+      //处理滚动事件
+      async handleScroll(dom){
+        const range = 100;
+        const dec = Math.abs((dom.scrollTop + dom.clientHeight -dom.scrollHeight));
+        if(dec <range){
+         this.fetchMore();
+        }
+      },
+
+      // 加载下一页
+      async fetchMore(){
+        if(!this.hasMore){
+          return; //没有更多的数据
+        }
+        this.page++;
+        const resp = await this.fetchData();
+        this.data.rows = this.data.rows.concat(resp.rows);
+      },
+
       async handleSubmit(formData, callBack) {
       const resp = await emitComment({
           blogId:this.$route.params.id,
