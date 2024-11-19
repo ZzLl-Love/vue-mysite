@@ -6,7 +6,6 @@
   <ul class="right-list-container">
     <li v-for="(item, index) in list"
         :key="index">
-
             <span @click="handleClick(item)" :class="{active: item.isSelect}">{{item.name}}</span>
             <span v-if="item.aside" class="aside">{{item.aside}}</span>
       <!-- 递归显示 子列表      -->
@@ -27,7 +26,6 @@ export default {
   },
   methods: {
     handleClick (item) {
-
       if(!item.isSelect){
         this.$emit('select',item); //抛出事件
       }

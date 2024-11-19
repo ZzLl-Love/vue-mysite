@@ -8,10 +8,18 @@
       <span>浏览量:{{blog.scanNumber}}</span>
       <span>
           <a href="#">评论:{{blog.commentNumber}}</a>
-      </span>`
-      <span>
-         <a href="#">分类:{{blog.category.name}}</a>
       </span>
+      <RouterLink :to="{
+        name: 'CategoryBlog',
+        params: {
+          categoryId: blog.category.id
+        }
+      }">
+        {{blog.category.name}}
+      </RouterLink>
+<!--      <span>-->
+<!--         <a href="#">分类:{{blog.category.name}}</a>-->
+<!--      </span>-->
     </div>.
 <!--    内容区域-->
     <div v-html="blog.htmlContent">
