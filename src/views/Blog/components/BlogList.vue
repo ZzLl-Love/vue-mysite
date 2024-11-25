@@ -8,7 +8,7 @@
                 :to="{name: 'BlogDetail',
                 params: {id:item.id}
               }">
-              <img :src="item.thumb"
+              <img v-lazy="item.thumb"
                    :alt="item.title"
                    :title="item.title"
               />
@@ -73,13 +73,13 @@ export default {
 
   //监控路由信息 分页导致路由信息改变  路由信息改变导致 重新请求远程数据
   watch: {
-   async $route(newVal,oldVal){
-      this.isLoading = true;
-      //新的远程数据  => 新的博客列表的滚动高度为0
+   async $route(newVal,oldVal) {
+     this.isLoading = true;
+     //新的远程数据  => 新的博客列表的滚动高度为0
      this.$refs.container.scrollTop = 0;
-      this.data = await this.fetchData();
-      this.isLoading = false;
-    }
+     this.data = await this.fetchData();
+     this.isLoading = false;
+   }
   },
 
 

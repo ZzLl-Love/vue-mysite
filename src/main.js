@@ -7,6 +7,9 @@ import "./api/banner"
 import "./eventBus"
 Vue.config.productionTip = false
 
+// 注册全局指令
+import vLazy from '@/directives/lazy'
+Vue.directive("lazy", vLazy)
 
 new Vue({
   devtools: true,
