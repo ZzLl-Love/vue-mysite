@@ -1,6 +1,8 @@
 import VueRouter from 'vue-router'
 import Vue from "vue";
 import routes from './routes'
+import store from '../store'
+import {titleController} from "@/utils";
 
 Vue.use(VueRouter); //使用路由插件
 
@@ -22,7 +24,7 @@ Vue.use(VueRouter); //使用路由插件
 // 路由守卫
 router.afterEach((to, from) => {
    if(to.meta.title){
-       document.title = to.meta.title;
+       titleController.setRouterTitle(to.meta.title);
    }
 })
 
