@@ -42,9 +42,10 @@
  import {getBanners} from "@/api/banner";
  import CarouseItem from './CarouseItem.vue'
  import Icon from  '@/components/Icon.vue'
- import fectchData from "@/mixins/fectchData";
+ import {mapState} from "vuex";
+ // import fectchData from "@/mixins/fectchData";
  export  default {
-  mixins: [fectchData([])],
+  // mixins: [fectchData([])],
    components: {
      Icon,
      CarouseItem,
@@ -53,9 +54,16 @@
    computed: {
      marginTop(){
       return -this.index *this.containerHeight + 'px';
-     }
+     },
+     ...mapState("banner", ['data']),
+
    },
 
+  created(){
+    var dispatch = this.$store.dispatch("banner/fetchBanner");
+    console.log(this.$store);
+
+  },
    data() {
     return {
         // banners: [],
@@ -96,9 +104,9 @@
        this.containerHeight = this.$refs.container.clientHeight
      },
 
-     async fetchData(){
-       return await getBanners();
-     },
+     // async fetchData(){
+     //   return await getBanners();
+     // },
 
 
    },

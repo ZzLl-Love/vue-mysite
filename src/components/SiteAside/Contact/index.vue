@@ -2,22 +2,22 @@
 <template>
   <ul class="contact-container">
     <li>
-      <a href="">
+      <a :href="data.github">
         <div class="icon">
-          <Icon type="weixin"/>
+          <Icon type="github"/>
         </div>
-        <span>501058587</span>
+        <span>{{data.githubName}}</span>
       </a>
       <div class="pop">
         <img src="https://www.wdu.edu.cn/images/dhxy_07.png" alt=""/>
       </div>
     </li>
     <li>
-      <a href="mailto:501058587@qq.com">
+      <a :href=" `mailto:${data.mail}`">
         <div class="icon">
           <Icon type="mail"/>
         </div>
-        <span>501058587@qq.com</span>
+        <span>{{data.mail}}</span>
       </a>
       <div class="pop">
         <img src="https://www.wdu.edu.cn/images/dhxy_07.png" alt=""/>
@@ -29,11 +29,15 @@
 <script>
 import Icon from "@/components/Icon.vue";
 import "@/styles/global.less"
+import {mapState} from "vuex";
 
 // todo 没有写完 进度为1小时12分钟
 export default {
   components: {
     Icon,
+  },
+  computed: {
+    ...mapState("setting",['data'])
   }
 }
 </script>

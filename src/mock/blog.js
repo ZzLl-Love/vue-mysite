@@ -35,7 +35,10 @@ Mock.mock(/^\/api\/blog(\?.+)?$/, 'get', function (options) {
                 },
                 "scanNumber|0-3000": 0,
                 "commentNumber|0-300": 30,
-                "thumb|1": [Mock.Random.image("30*25", "#000", '#fff', "Random Image"), null],
+                "thumb|1": [
+                    "@image(20*25, @color, #fff, @natural)", null
+                    // Mock.Random.image("30*25", "#000", '#fff', "Random Image"), null
+                ],
                 createDate: `@date('T')`
             }]
         }

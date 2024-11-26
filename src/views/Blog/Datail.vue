@@ -23,6 +23,8 @@
  import BlogDetail from "@/views/Blog/components/BlogDetail.vue";
  import BlogToc from "@/views/Blog/components/BlogToc.vue";
  import BlogComment from "@/views/Blog/components/BlogComment.vue";
+ import {titleController} from "@/utils";
+
  export default {
   mixins: [fectchData({})],
   components: {
@@ -37,7 +39,9 @@
 
       async fetchData(){
         // console.log( await getBlog(this.$route.params.id))
-        return await getBlog(this.$route.params.id)
+        const  resp = await getBlog(this.$route.params.id);
+        titleController.setRouterTitle(resp.title);
+        return resp;
       },
 
      //处理滚动条事件
