@@ -1,6 +1,9 @@
 import "./banner";// 当后端正式服务器开发完成后，注释至一行，直接请求正式后端服务器
 import './blog';
-import './setting'
+import './setting';  
+import './about';
+import  './project';
+import  './message';
 import Mock from 'mockjs';
 
 /**
